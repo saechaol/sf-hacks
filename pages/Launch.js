@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
-const Launch = () => {
+const Launch = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Live Translate!</Text>
+      <TouchableWithoutFeedback onPress={() =>
+        navigation.navigate('Translate')
+      }>
+        <Text style={styles.text}>Live Translate!</Text>
+      </TouchableWithoutFeedback>
       <StatusBar style="auto" />
     </View>
   );

@@ -5,7 +5,6 @@ import Launch from './pages/Launch';
 import Translate from './pages/Translate';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'expo-status-bar';
 
 const Stack = createStackNavigator();
 const AppNavigation = () => {
