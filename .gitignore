@@ -131,5 +131,4 @@ dmypy.json
 # React-Native
 .expo-shared/
 .expo/
-node-modules/
-node-modules
+node_modules
