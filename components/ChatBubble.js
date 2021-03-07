@@ -43,13 +43,7 @@ class ChatBubble extends React.Component {
             ) : null,
             Tts.getInitStatus().then(
               () => {
-                Tts.speak(this.props.text, {
-                  androidParams: {
-                    KEY_PARAM_PAN: -1,
-                    KEY_PARAM_VOLUME: 0.5,
-                    KEY_PARAM_STREAM: "STREAM_MUSIC",
-                  },
-                });
+                Tts.speak(this.props.text);
               },
               (err) => {
                 if (err.code === "no_engine") {
