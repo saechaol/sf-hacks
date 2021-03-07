@@ -136,16 +136,16 @@ const VoiceTest = () => {
         <Text style={styles.textStyle}>Results</Text>
         <ScrollView style={{ marginBottom: 42 }}>
           {
-            ((Tts.speak(text, {
+            (texts.map((text, index) => {
+              return <ChatBubble key={index} text={text} />;
+            }),
+            Tts.speak(text, {
               androidParams: {
                 KEY_PARAM_PAN: -1,
                 KEY_PARAM_VOLUME: 0.5,
                 KEY_PARAM_STREAM: "STREAM_MUSIC",
               },
             }),
-            texts.map((text, index) => {
-              return <ChatBubble key={index} text={text} />;
-            })),
             Tts.stop())
           }
         </ScrollView>
