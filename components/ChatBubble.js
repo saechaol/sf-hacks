@@ -13,6 +13,17 @@ import Tts from "react-native-tts";
  */
 class ChatBubble extends React.Component {
   render() {
+    Tts.getInitStatus().then(
+      () => {
+        Tts.speak(this.props.text);
+      },
+      (err) => {
+        if (err.code === "no_engine") {
+          Tts.requestInstallEngine();
+        }
+      }
+    );
+    Tts.stop();
     return (
       <View
         style={[
@@ -28,31 +39,18 @@ class ChatBubble extends React.Component {
             },
           ]}
         >
-          {
-            (this.props.text ? (
-              <Text
-                style={[
-                  styles.text,
-                  {
-                    color: this.props.mine ? "white:" : "white",
-                  },
-                ]}
-              >
-                {this.props.text}
-              </Text>
-            ) : null,
-            Tts.getInitStatus().then(
-              () => {
-                Tts.speak(this.props.text);
-              },
-              (err) => {
-                if (err.code === "no_engine") {
-                  Tts.requestInstallEngine();
-                }
-              }
-            ),
-            Tts.stop())
-          }
+          {this.props.text ? (
+            <Text
+              style={[
+                styles.text,
+                {
+                  color: this.props.mine ? "white:" : "white",
+                },
+              ]}
+            >
+              {this.props.text}
+            </Text>
+          ) : null}
           <View
             style={[
               styles.arrow_container,
