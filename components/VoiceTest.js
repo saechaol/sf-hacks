@@ -27,6 +27,7 @@ const VoiceTest = () => {
   const [started, setStarted] = useState("");
   const [results, setResults] = useState([]);
   const [texts, setTexts] = useState([]);
+  const textNum = -1;
 
   useEffect(() => {
     //Setting callbacks for the process status
@@ -65,6 +66,7 @@ const VoiceTest = () => {
     setResults(e.value);
     setTexts((oldText) => [...oldText, e.value[0]]);
     console.log("setTexts: ", texts);
+    textNum++;
   };
 
   const startRecognizing = async () => {
@@ -137,15 +139,24 @@ const VoiceTest = () => {
         <ScrollView style={{ marginBottom: 42 }}>
           {
             (texts.map((text, index) => {
-              Tts.speak(text, {
-                androidParams: {
-                  KEY_PARAM_PAN: -1,
-                  KEY_PARAM_VOLUME: 0.5,
-                  KEY_PARAM_STREAM: "STREAM_MUSIC",
-                },
-              });
               return <ChatBubble key={index} text={text} />;
             }),
+            Tts.getInitStatus().then(
+              () => {
+                Tts.speak(texts[textNum], {
+                  androidParams: {
+                    KEY_PARAM_PAN: -1,
+                    KEY_PARAM_VOLUME: 0.5,
+                    KEY_PARAM_STREAM: "STREAM_MUSIC",
+                  },
+                });
+              },
+              (err) => {
+                if (err.code === "no_engine") {
+                  Tts.requestInstallEngine();
+                }
+              }
+            ),
             Tts.stop())
           }
         </ScrollView>
