@@ -133,7 +133,6 @@ const VoiceTest = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text style={styles.titleText}>
-          Speech to Text Conversion in React Native |
           Voice Recognition
         </Text>
         <Text style={styles.textStyle}>
@@ -216,7 +215,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 15,
     padding: 10,
-    backgroundColor: '#8ad24e',
+    backgroundColor: '#FD9D9D',
     marginRight: 2,
     marginLeft: 2,
   },
