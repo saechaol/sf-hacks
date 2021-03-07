@@ -137,7 +137,7 @@ const VoiceTest = () => {
           Voice Recognition
         </Text>
         <Text style={styles.textStyle}>
-          Press mike to start Recognition
+          Press mic to start Recognition
         </Text>
         <View style={styles.headerContainer}>
           <Text style={styles.textWithSpaceStyle}>
@@ -145,14 +145,6 @@ const VoiceTest = () => {
           </Text>
           <Text style={styles.textWithSpaceStyle}>
             {`End: ${end}`}
-          </Text>
-        </View>
-        <View style={styles.headerContainer}>
-          <Text style={styles.textWithSpaceStyle}>
-            {`Pitch: \n ${pitch}`}
-          </Text>
-          <Text style={styles.textWithSpaceStyle}>
-            {`Error: \n ${error}`}
           </Text>
         </View>
         <TouchableHighlight onPress={startRecognizing}>
@@ -165,32 +157,13 @@ const VoiceTest = () => {
           />
         </TouchableHighlight>
         <Text style={styles.textStyle}>
-          Partial Results
-        </Text>
-        <ScrollView>
-          {partialResults.map((result, index) => {
-            return (
-              <Text
-                key={`partial-result-${index}`}
-                style={styles.textStyle}>
-                {result}
-              </Text>
-            );
-          })}
-        </ScrollView>
-        <Text style={styles.textStyle}>
           Results
         </Text>
         <ScrollView style={{marginBottom: 42}}>
-          {results.map((result, index) => {
-            return (
-              <Text
-                key={`result-${index}`}
-                style={styles.textStyle}>
-                {result}
-              </Text>
-            );
-          })}
+          <Text
+            style={styles.textStyle}>
+            {results[0]}
+          </Text>
         </ScrollView>
         <View style={styles.horizontalView}>
           <TouchableHighlight
