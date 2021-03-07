@@ -27,7 +27,7 @@ const VoiceTest = () => {
   const [started, setStarted] = useState("");
   const [results, setResults] = useState([]);
   const [texts, setTexts] = useState([]);
-  const textNum = -1;
+  const currentText = useState("");
 
   useEffect(() => {
     //Setting callbacks for the process status
@@ -66,7 +66,7 @@ const VoiceTest = () => {
     setResults(e.value);
     setTexts((oldText) => [...oldText, e.value[0]]);
     console.log("setTexts: ", texts);
-    textNum++;
+    currentText(e.value);
   };
 
   const startRecognizing = async () => {
@@ -138,14 +138,12 @@ const VoiceTest = () => {
         <Text style={styles.textStyle}>Results</Text>
         <ScrollView style={{ marginBottom: 42 }}>
           {
-            ((speech = ""),
-            texts.map((text, index) => {
-              speech = text;
+            (texts.map((text, index) => {
               return <ChatBubble key={index} text={text} />;
             }),
             Tts.getInitStatus().then(
               () => {
-                Tts.speak(speech, {
+                Tts.speak(currentText, {
                   androidParams: {
                     KEY_PARAM_PAN: -1,
                     KEY_PARAM_VOLUME: 0.5,
