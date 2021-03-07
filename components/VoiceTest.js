@@ -137,14 +137,14 @@ const VoiceTest = () => {
         <ScrollView style={{ marginBottom: 42 }}>
           {
             (texts.map((text, index) => {
+              Tts.speak(text, {
+                androidParams: {
+                  KEY_PARAM_PAN: -1,
+                  KEY_PARAM_VOLUME: 0.5,
+                  KEY_PARAM_STREAM: "STREAM_MUSIC",
+                },
+              });
               return <ChatBubble key={index} text={text} />;
-            }),
-            Tts.speak(text, {
-              androidParams: {
-                KEY_PARAM_PAN: -1,
-                KEY_PARAM_VOLUME: 0.5,
-                KEY_PARAM_STREAM: "STREAM_MUSIC",
-              },
             }),
             Tts.stop())
           }
