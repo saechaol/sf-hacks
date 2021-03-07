@@ -28,10 +28,11 @@ const VoiceTest = () => {
   const [results, setResults] = useState([]);
   const [texts, setTexts] = useState([]);
   const [mine, setMine] = useState(false);
-  const mineList =[];
 
   const toggleSwitch = (value) => {
     setMine(value);
+    console.log('Value: ', value);
+    console.log('Mine', mine);
   };
 
   useEffect(() => {
@@ -70,8 +71,6 @@ const VoiceTest = () => {
     console.log('onSpeechResults: ', e);
     setResults(e.value);
     setTexts(oldText => [...oldText, e.value[0]]);
-    mineList.push(mine ? 1 : 0);
-    console.log('setTexts: ', texts);
   };
 
 
@@ -158,9 +157,7 @@ const VoiceTest = () => {
           {
             texts.map((text, index) => {
               return(
-                <ChatBubble key={index} text={text} mine={
-                  mineList[index] == 1 ? true : false
-                }/>
+                <ChatBubble key={index} text={text} mine={mine}/>
               );
             })
           }
