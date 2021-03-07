@@ -1,0 +1,12 @@
+{
+  "name": "sf-hacks",
+  "displayName": "sf-hacks",
+  "expo": {
+    "name": "sf-hacks",
+    "slug": "sf-hacks",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
