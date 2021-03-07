@@ -1,11 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import Voice from '@react-native-voice/voice';
 
-const Translate = () => {
+class VoiceTest extends React.Component {
+  constructor(props) {
+    Voice.onSpeechStart = this.onSpeechStartHandler.bind(this);
+    Voice.onSpeechEnd = this.onSpeechEndHandler.bind(this);
+    Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
+  }
+  onStartButtonPress(e){
+    Voice.start('en-US');
+  }
+}
+
+const Translate = (e) => {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <TouchableWithoutFeedback onPress={() =>
+        VoiceTest.onStartButtonPress(e)
+      }>
+        <Text>Translate</Text>
+      </TouchableWithoutFeedback>
       <StatusBar style="auto" />
     </View>
   );
