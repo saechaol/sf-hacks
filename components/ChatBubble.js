@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { moderateScale } from "react-native-size-matters";
+import Tts from "react-native-tts";
 
 /*
  * props:
@@ -27,18 +28,37 @@ class ChatBubble extends React.Component {
             },
           ]}
         >
-          {this.props.text ? (
-            <Text
-              style={[
-                styles.text,
-                {
-                  color: this.props.mine ? "white:" : "white",
-                },
-              ]}
-            >
-              {this.props.text}
-            </Text>
-          ) : null}
+          {
+            (this.props.text ? (
+              <Text
+                style={[
+                  styles.text,
+                  {
+                    color: this.props.mine ? "white:" : "white",
+                  },
+                ]}
+              >
+                {this.props.text}
+              </Text>
+            ) : null,
+            Tts.getInitStatus().then(
+              () => {
+                Tts.speak(this.props.text, {
+                  androidParams: {
+                    KEY_PARAM_PAN: -1,
+                    KEY_PARAM_VOLUME: 0.5,
+                    KEY_PARAM_STREAM: "STREAM_MUSIC",
+                  },
+                });
+              },
+              (err) => {
+                if (err.code === "no_engine") {
+                  Tts.requestInstallEngine();
+                }
+              }
+            ),
+            Tts.stop())
+          }
           <View
             style={[
               styles.arrow_container,

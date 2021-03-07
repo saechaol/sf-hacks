@@ -17,7 +17,6 @@ import {
 
 // import Voice
 import Voice from "react-native-voice";
-import Tts from "react-native-tts";
 import "./ChatBubble";
 import ChatBubble from "./ChatBubble";
 
@@ -137,28 +136,9 @@ const VoiceTest = () => {
         </TouchableHighlight>
         <Text style={styles.textStyle}>Results</Text>
         <ScrollView style={{ marginBottom: 42 }}>
-          {
-            (texts.map((text, index) => {
-              return <ChatBubble key={index} text={text} />;
-            }),
-            Tts.getInitStatus().then(
-              () => {
-                Tts.speak(currentText, {
-                  androidParams: {
-                    KEY_PARAM_PAN: -1,
-                    KEY_PARAM_VOLUME: 0.5,
-                    KEY_PARAM_STREAM: "STREAM_MUSIC",
-                  },
-                });
-              },
-              (err) => {
-                if (err.code === "no_engine") {
-                  Tts.requestInstallEngine();
-                }
-              }
-            ),
-            Tts.stop())
-          }
+          {texts.map((text, index) => {
+            return <ChatBubble key={index} text={text} />;
+          })}
         </ScrollView>
         <View style={styles.horizontalView}>
           <TouchableHighlight
