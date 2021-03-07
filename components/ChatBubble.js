@@ -32,7 +32,7 @@ class ChatBubble extends React.Component {
               style={[
                 styles.text,
                 {
-                  color: this.props.mine ? "white:" : "white",
+                  color: "white",
                 },
               ]}
             >

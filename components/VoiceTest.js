@@ -13,6 +13,7 @@ import {
   Image,
   TouchableHighlight,
   ScrollView,
+  Switch,
 } from 'react-native';
 
 // import Voice
@@ -26,6 +27,12 @@ const VoiceTest = () => {
   const [started, setStarted] = useState('');
   const [results, setResults] = useState([]);
   const [texts, setTexts] = useState([]);
+  const [mine, setMine] = useState(false);
+  const mineList =[];
+
+  const toggleSwitch = (value) => {
+    setMine(value);
+  };
 
   useEffect(() => {
     //Setting callbacks for the process status
@@ -63,6 +70,7 @@ const VoiceTest = () => {
     console.log('onSpeechResults: ', e);
     setResults(e.value);
     setTexts(oldText => [...oldText, e.value[0]]);
+    mineList.push(mine ? 1 : 0);
     console.log('setTexts: ', texts);
   };
 
@@ -109,6 +117,8 @@ const VoiceTest = () => {
       setStarted('');
       setResults([]);
       setEnd('');
+      setTexts([]);
+      setMines([]);
     } catch (e) {
       //eslint-disable-next-line
       console.error(e);
@@ -148,7 +158,9 @@ const VoiceTest = () => {
           {
             texts.map((text, index) => {
               return(
-                <ChatBubble key={index} text={text} />
+                <ChatBubble key={index} text={text} mine={
+                  mineList[index] == 1 ? true : false
+                }/>
               );
             })
           }
@@ -161,13 +173,12 @@ const VoiceTest = () => {
               Stop
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight
-            onPress={cancelRecognizing}
-            style={styles.buttonStyle}>
-            <Text style={styles.buttonTextStyle}>
-              Cancel
+          <View style={styles.container}>
+            <Text>
+              {mine ? 'I am talking' : 'You are talking'}
             </Text>
-          </TouchableHighlight>
+            <Switch onValueChange={toggleSwitch} value={mine} />
+          </View>
           <TouchableHighlight
             onPress={destroyRecognizer}
             style={styles.buttonStyle}>
