@@ -17,14 +17,15 @@ import {
 
 // import Voice
 import Voice from 'react-native-voice';
+import './ChatBubble';
+import ChatBubble from './ChatBubble';
 
 const VoiceTest = () => {
-  const [pitch, setPitch] = useState('');
   const [error, setError] = useState('');
   const [end, setEnd] = useState('');
   const [started, setStarted] = useState('');
   const [results, setResults] = useState([]);
-  const [partialResults, setPartialResults] = useState([]);
+  const [texts, setTexts] = useState([]);
 
   useEffect(() => {
     //Setting callbacks for the process status
@@ -32,8 +33,6 @@ const VoiceTest = () => {
     Voice.onSpeechEnd = onSpeechEnd;
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
-    Voice.onSpeechPartialResults = onSpeechPartialResults;
-    Voice.onSpeechVolumeChanged = onSpeechVolumeChanged;
 
     return () => {
       //destroy the process after switching the screen
@@ -63,29 +62,18 @@ const VoiceTest = () => {
     //Invoked when SpeechRecognizer is finished recognizing
     console.log('onSpeechResults: ', e);
     setResults(e.value);
+    setTexts(oldText => [...oldText, e.value[0]]);
+    console.log('setTexts: ', texts);
   };
 
-  const onSpeechPartialResults = (e) => {
-    //Invoked when any results are computed
-    console.log('onSpeechPartialResults: ', e);
-    setPartialResults(e.value);
-  };
-
-  const onSpeechVolumeChanged = (e) => {
-    //Invoked when pitch that is recognized changed
-    console.log('onSpeechVolumeChanged: ', e);
-    setPitch(e.value);
-  };
 
   const startRecognizing = async () => {
     //Starts listening for speech for a specific locale
     try {
       await Voice.start('en-US');
-      setPitch('');
       setError('');
       setStarted('');
       setResults([]);
-      setPartialResults([]);
       setEnd('');
     } catch (e) {
       //eslint-disable-next-line
@@ -117,11 +105,9 @@ const VoiceTest = () => {
     //Destroys the current SpeechRecognizer instance
     try {
       await Voice.destroy();
-      setPitch('');
       setError('');
       setStarted('');
       setResults([]);
-      setPartialResults([]);
       setEnd('');
     } catch (e) {
       //eslint-disable-next-line
@@ -159,10 +145,13 @@ const VoiceTest = () => {
           Results
         </Text>
         <ScrollView style={{marginBottom: 42}}>
-          <Text
-            style={styles.textStyle}>
-            {results[0]}
-          </Text>
+          {
+            texts.map((text, index) => {
+              return(
+                <ChatBubble key={index} text={text} />
+              );
+            })
+          }
         </ScrollView>
         <View style={styles.horizontalView}>
           <TouchableHighlight
@@ -197,7 +186,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
     padding: 5,
   },
   headerContainer: {
@@ -235,6 +223,7 @@ const styles = StyleSheet.create({
   imageButton: {
     width: 50,
     height: 50,
+    alignSelf: 'center',
   },
   textWithSpaceStyle: {
     flex: 1,
