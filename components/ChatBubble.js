@@ -3,6 +3,13 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { moderateScale } from "react-native-size-matters";
 
+/*
+ * props:
+ *   - mine (bool)
+ *          renders lighter pink bubble on the right
+ *   - text (string)
+ *          renders text message
+ */
 class ChatBubble extends React.Component {
   render() {
     return (
