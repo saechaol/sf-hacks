@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "sfhacks2.app"
-               BlueprintName = "sfhacks2"
-               ReferencedContainer = "container:sfhacks2.xcodeproj">
+               BuildableName = "sfhacks.app"
+               BlueprintName = "sfhacks"
+               ReferencedContainer = "container:sfhacks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "sfhacks2Tests.xctest"
-               BlueprintName = "sfhacks2Tests"
-               ReferencedContainer = "container:sfhacks2.xcodeproj">
+               BuildableName = "sfhacksTests.xctest"
+               BlueprintName = "sfhacksTests"
+               ReferencedContainer = "container:sfhacks.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "sfhacks2.app"
-            BlueprintName = "sfhacks2"
-            ReferencedContainer = "container:sfhacks2.xcodeproj">
+            BuildableName = "sfhacks.app"
+            BlueprintName = "sfhacks"
+            ReferencedContainer = "container:sfhacks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "sfhacks2.app"
-            BlueprintName = "sfhacks2"
-            ReferencedContainer = "container:sfhacks2.xcodeproj">
+            BuildableName = "sfhacks.app"
+            BlueprintName = "sfhacks"
+            ReferencedContainer = "container:sfhacks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

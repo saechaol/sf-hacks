@@ -1,9 +1,9 @@
 {
-  "name": "sfhacks2",
-  "displayName": "sfhacks2",
+  "name": "sf-hacks",
+  "displayName": "sf-hacks",
   "expo": {
-    "name": "sfhacks2",
-    "slug": "sfhacks2",
+    "name": "sf-hacks",
+    "slug": "sf-hacks",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

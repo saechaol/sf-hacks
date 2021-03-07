@@ -1,4 +1,4 @@
-package com.sfhacks2;
+package com.sfhacks;
 
 import android.os.Bundle;
 
